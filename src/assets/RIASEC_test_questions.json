@@ -1,0 +1,362 @@
+[
+  {
+    "id": 14,
+    "category": "I",
+    "statement": "Я люблю изучать, как работают вещи.",
+    "type": "Investigative"
+  },
+  {
+    "id": 50,
+    "category": "E",
+    "statement": "Я предпочитаю активную, динамичную среду.",
+    "type": "Enterprising"
+  },
+  {
+    "id": 56,
+    "category": "C",
+    "statement": "Я люблю следовать правилам.",
+    "type": "Conventional"
+  },
+  {
+    "id": 6,
+    "category": "R",
+    "statement": "Мне интересно работать руками.",
+    "type": "Realistic"
+  },
+  {
+    "id": 4,
+    "category": "R",
+    "statement": "Я чувствую себя комфортно на открытом воздухе.",
+    "type": "Realistic"
+  },
+  {
+    "id": 18,
+    "category": "I",
+    "statement": "Меня привлекает научная работа.",
+    "type": "Investigative"
+  },
+  {
+    "id": 47,
+    "category": "E",
+    "statement": "Я стремлюсь к успеху и признанию.",
+    "type": "Enterprising"
+  },
+  {
+    "id": 40,
+    "category": "S",
+    "statement": "Мне нравится поддерживать других эмоционально.",
+    "type": "Social"
+  },
+  {
+    "id": 51,
+    "category": "C",
+    "statement": "Я люблю порядок и структуру.",
+    "type": "Conventional"
+  },
+  {
+    "id": 10,
+    "category": "R",
+    "statement": "Я люблю работу, где можно что-то строить или создавать физически.",
+    "type": "Realistic"
+  },
+  {
+    "id": 44,
+    "category": "E",
+    "statement": "Я люблю быть в центре внимания.",
+    "type": "Enterprising"
+  },
+  {
+    "id": 16,
+    "category": "I",
+    "statement": "Я предпочитаю думать, а не действовать.",
+    "type": "Investigative"
+  },
+  {
+    "id": 38,
+    "category": "S",
+    "statement": "Я люблю заботиться о других.",
+    "type": "Social"
+  },
+  {
+    "id": 26,
+    "category": "A",
+    "statement": "Я предпочитаю свободу самовыражения.",
+    "type": "Artistic"
+  },
+  {
+    "id": 31,
+    "category": "S",
+    "statement": "Мне нравится помогать людям.",
+    "type": "Social"
+  },
+  {
+    "id": 8,
+    "category": "R",
+    "statement": "Я предпочитаю задачи, которые требуют выносливости.",
+    "type": "Realistic"
+  },
+  {
+    "id": 45,
+    "category": "E",
+    "statement": "Я уверен в себе и своих решениях.",
+    "type": "Enterprising"
+  },
+  {
+    "id": 42,
+    "category": "E",
+    "statement": "Я чувствую себя уверенно, когда руковожу.",
+    "type": "Enterprising"
+  },
+  {
+    "id": 60,
+    "category": "C",
+    "statement": "Я люблю планировать и вести учёт.",
+    "type": "Conventional"
+  },
+  {
+    "id": 37,
+    "category": "S",
+    "statement": "Мне важно общение с людьми.",
+    "type": "Social"
+  },
+  {
+    "id": 1,
+    "category": "R",
+    "statement": "Мне нравится работать с инструментами или техникой.",
+    "type": "Realistic"
+  },
+  {
+    "id": 33,
+    "category": "S",
+    "statement": "Я умею слушать и понимать других.",
+    "type": "Social"
+  },
+  {
+    "id": 49,
+    "category": "E",
+    "statement": "Я люблю брать на себя ответственность.",
+    "type": "Enterprising"
+  },
+  {
+    "id": 21,
+    "category": "A",
+    "statement": "Мне нравится рисовать, писать или петь.",
+    "type": "Artistic"
+  },
+  {
+    "id": 15,
+    "category": "I",
+    "statement": "Мне нравится искать закономерности.",
+    "type": "Investigative"
+  },
+  {
+    "id": 54,
+    "category": "C",
+    "statement": "Я предпочитаю стабильную и организованную работу.",
+    "type": "Conventional"
+  },
+  {
+    "id": 46,
+    "category": "E",
+    "statement": "Мне нравится конкуренция.",
+    "type": "Enterprising"
+  },
+  {
+    "id": 43,
+    "category": "E",
+    "statement": "Мне интересно участвовать в переговорах.",
+    "type": "Enterprising"
+  },
+  {
+    "id": 30,
+    "category": "A",
+    "statement": "Я люблю участвовать в культурных мероприятиях.",
+    "type": "Artistic"
+  },
+  {
+    "id": 12,
+    "category": "I",
+    "statement": "Я люблю решать сложные задачи.",
+    "type": "Investigative"
+  },
+  {
+    "id": 9,
+    "category": "R",
+    "statement": "Мне нравится труд, связанный с природой.",
+    "type": "Realistic"
+  },
+  {
+    "id": 32,
+    "category": "S",
+    "statement": "Я люблю обучать других.",
+    "type": "Social"
+  },
+  {
+    "id": 52,
+    "category": "C",
+    "statement": "Мне нравится работать с числами и таблицами.",
+    "type": "Conventional"
+  },
+  {
+    "id": 22,
+    "category": "A",
+    "statement": "Я предпочитаю нестандартный подход.",
+    "type": "Artistic"
+  },
+  {
+    "id": 41,
+    "category": "E",
+    "statement": "Мне нравится убеждать других.",
+    "type": "Enterprising"
+  },
+  {
+    "id": 48,
+    "category": "E",
+    "statement": "Мне интересно создавать и развивать бизнес.",
+    "type": "Enterprising"
+  },
+  {
+    "id": 35,
+    "category": "S",
+    "statement": "Я чувствую удовлетворение, когда помогаю.",
+    "type": "Social"
+  },
+  {
+    "id": 23,
+    "category": "A",
+    "statement": "Я чувствую вдохновение от искусства.",
+    "type": "Artistic"
+  },
+  {
+    "id": 34,
+    "category": "S",
+    "statement": "Мне нравится быть полезным.",
+    "type": "Social"
+  },
+  {
+    "id": 27,
+    "category": "A",
+    "statement": "Мне интересны нестандартные идеи.",
+    "type": "Artistic"
+  },
+  {
+    "id": 3,
+    "category": "R",
+    "statement": "Мне нравится физическая работа.",
+    "type": "Realistic"
+  },
+  {
+    "id": 11,
+    "category": "I",
+    "statement": "Мне нравится анализировать идеи.",
+    "type": "Investigative"
+  },
+  {
+    "id": 36,
+    "category": "S",
+    "statement": "Я предпочитаю работать в команде.",
+    "type": "Social"
+  },
+  {
+    "id": 24,
+    "category": "A",
+    "statement": "Мне нравится создавать что-то оригинальное.",
+    "type": "Artistic"
+  },
+  {
+    "id": 39,
+    "category": "S",
+    "statement": "Я легко нахожу общий язык с людьми.",
+    "type": "Social"
+  },
+  {
+    "id": 17,
+    "category": "I",
+    "statement": "Я люблю читать научные статьи или книги.",
+    "type": "Investigative"
+  },
+  {
+    "id": 7,
+    "category": "R",
+    "statement": "Мне нравятся практические задачи.",
+    "type": "Realistic"
+  },
+  {
+    "id": 57,
+    "category": "C",
+    "statement": "Я чувствую себя комфортно в офисной среде.",
+    "type": "Conventional"
+  },
+  {
+    "id": 29,
+    "category": "A",
+    "statement": "Мне нравится пробовать новые стили.",
+    "type": "Artistic"
+  },
+  {
+    "id": 25,
+    "category": "A",
+    "statement": "Я люблю выражать свои чувства в творчестве.",
+    "type": "Artistic"
+  },
+  {
+    "id": 55,
+    "category": "C",
+    "statement": "Мне нравится анализировать данные.",
+    "type": "Conventional"
+  },
+  {
+    "id": 28,
+    "category": "A",
+    "statement": "Я чувствую, что мне важно быть уникальным.",
+    "type": "Artistic"
+  },
+  {
+    "id": 20,
+    "category": "I",
+    "statement": "Я люблю делать выводы на основе данных.",
+    "type": "Investigative"
+  },
+  {
+    "id": 53,
+    "category": "C",
+    "statement": "Я чувствую удовлетворение от выполнения инструкций.",
+    "type": "Conventional"
+  },
+  {
+    "id": 59,
+    "category": "C",
+    "statement": "Мне нравится систематизировать информацию.",
+    "type": "Conventional"
+  },
+  {
+    "id": 5,
+    "category": "R",
+    "statement": "Я люблю управлять машинами или механизмами.",
+    "type": "Realistic"
+  },
+  {
+    "id": 2,
+    "category": "R",
+    "statement": "Я предпочитаю ремонтировать вещи самостоятельно.",
+    "type": "Realistic"
+  },
+  {
+    "id": 13,
+    "category": "I",
+    "statement": "Мне интересны эксперименты и исследования.",
+    "type": "Investigative"
+  },
+  {
+    "id": 19,
+    "category": "I",
+    "statement": "Мне интересны абстрактные понятия.",
+    "type": "Investigative"
+  },
+  {
+    "id": 58,
+    "category": "C",
+    "statement": "Я аккуратен и внимателен к деталям.",
+    "type": "Conventional"
+  }
+]
