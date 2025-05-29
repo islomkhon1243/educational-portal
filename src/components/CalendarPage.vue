@@ -68,14 +68,28 @@ export default {
     async fetchAdmissionPeriods() {
       try {
         const response = await axios.get('http://localhost:3000/api/universities');
-        this.events = response.data.map(university => ({
-          id: university.id, // 👈 добавили ID
+
+        const colorPalette = [
+          '#1976D2', // синий
+          '#388E3C', // зелёный
+          '#F57C00', // оранжевый
+          '#C2185B', // розовый
+          '#7B1FA2', // фиолетовый
+          '#0097A7', // голубой
+          '#FBC02D', // жёлтый
+          '#E64A19', // кирпичный
+          '#512DA8', // индиго
+          '#455A64', // серый
+        ];
+
+        this.events = response.data.map((university, index) => ({
+          id: university.id,
           name: university.name,
           location: university.location,
           established: university.established,
           start: university.admission_start.split('T')[0],
           end: university.admission_end.split('T')[0],
-          color: 'blue',
+          color: colorPalette[index % colorPalette.length], // 💡 разные цвета по индексу
         }));
       } catch (error) {
         console.error('Error fetching university data:', error);

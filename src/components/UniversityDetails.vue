@@ -6,7 +6,9 @@
         <v-icon left>mdi-arrow-left</v-icon>
         Назад
       </v-btn>
-      <v-btn icon @click="toggleFavorite" class="favorite-button">
+
+      <!-- Иконка избранного -->
+      <v-btn icon @click="toggleFavorite" :color="isFavorite ? 'red' : 'grey'">
         <v-icon>{{ isFavorite ? 'mdi-heart' : 'mdi-heart-outline' }}</v-icon>
       </v-btn>
     </div>
@@ -278,6 +280,8 @@ export default {
     this.checkAuthentication(); // Проверяем авторизацию при монтировании
     this.fetchUserDocuments(); // Загружаем документы пользователя
     this.checkUser();
+    this.checkFavorite();
+    this.favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
   },
   methods: {
     async fetchUniversityDetails() {
@@ -443,9 +447,6 @@ export default {
         }
       }
     },
-    toggleFavorite() {
-      this.isFavorite = !this.isFavorite;
-    },
     loadYandexMap() {
       if (this.university.map) {
         const script = document.createElement('script');
@@ -456,6 +457,27 @@ export default {
 
         document.getElementById('yandex-map-container').innerHTML = ''; // Очищаем контейнер на всякий случай
         document.getElementById('yandex-map-container').appendChild(script);
+      }
+    },
+    checkFavorite() {
+      const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+      const currentId = this.$route.params.id;
+      this.isFavorite = favorites.includes(currentId);
+    },
+    toggleFavorite() {
+      const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+      const currentId = this.$route.params.id;
+
+      if (favorites.includes(currentId)) {
+        // Удаляем из избранного
+        const updated = favorites.filter(id => id !== currentId);
+        localStorage.setItem('favorites', JSON.stringify(updated));
+        this.isFavorite = false;
+      } else {
+        // Добавляем в избранное
+        favorites.push(currentId);
+        localStorage.setItem('favorites', JSON.stringify(favorites));
+        this.isFavorite = true;
       }
     }
   }
@@ -531,10 +553,6 @@ export default {
 .description-section {
   margin-bottom: 30px;
   word-break: break-word;
-}
-
-.favorite-button {
-  color: red;
 }
 
 /* Адаптивность */
