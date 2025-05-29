@@ -26,12 +26,20 @@ const SECRET_KEY = process.env.JWT_SECRET;
 const SCRAPER_API_KEY = '54279510997a8417ada10850a002753b';
 
 // PostgreSQL connection
+// const pool = new Pool({
+//     user: 'postgres',
+//     host: 'localhost',
+//     database: 'postgres',  
+//     password: 'postgres',
+//     port: 5432,
+// });
+
+// URI-подключение с sslmode=require
 const pool = new Pool({
-    user: 'postgres',
-    host: 'localhost',
-    database: 'postgres',  
-    password: 'postgres',
-    port: 5432,
+  connectionString: 'postgresql://neondb_owner:npg_7LPMXUkv1OJl@ep-autumn-dawn-a28q5n30-pooler.eu-central-1.aws.neon.tech/neondb?sslmode=require',
+  ssl: {
+    rejectUnauthorized: false
+  }
 });
 
 app.use(bodyParser.json());
