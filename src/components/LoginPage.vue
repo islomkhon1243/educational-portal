@@ -15,7 +15,7 @@
 import axios from 'axios';
 axios.defaults.withCredentials = true;
 
-const host = `${window.location.origin}`;
+const host = 'https://64.29.17.129:3000';
 
 export default {
   data() {
