@@ -67,7 +67,7 @@
 <script>
 import axios from 'axios';
 
-const host = "http://localhost:3000";
+const host = `${window.location.origin}`;
 
 export default {
   data() {
