@@ -16,8 +16,7 @@ const axios = require("axios");
 require("dotenv").config();
 
 const app = express();
-const port = 3000;
-const host = process.env.VUE_APP_HOST_BACK;
+const port = process.env.PORT || 3000;
 
 axios.defaults.withCredentials = true;
 
@@ -49,8 +48,8 @@ app.use(cors({
     credentials: true      // Разрешаем отправку cookies
 }));
 
-app.listen(3000, 'localhost', () => {
-    console.log("Server is running on port 3000");
+app.listen(port, () => {
+    console.log(`Server is running on port ${port}`);
 });
 
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
