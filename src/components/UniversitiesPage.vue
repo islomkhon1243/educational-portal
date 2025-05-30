@@ -36,7 +36,7 @@ import axios from 'axios';
 import { VIcon } from 'vuetify/lib/components';
 
 axios.defaults.withCredentials = true;
-const host = "http://localhost:3000";
+const host = `${window.location.origin}`;
 const FAVORITES_KEY = 'favorites';
 
 export default {
