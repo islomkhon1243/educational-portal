@@ -6,7 +6,8 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "start": "node backend/index.js"
+    "start": "node backend/index.js",
+    "dev": "npm-run-all --parallel serve start"
   },
   "dependencies": {
     "@google/generative-ai": "^0.21.0",
