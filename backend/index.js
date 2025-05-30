@@ -17,7 +17,6 @@ require("dotenv").config();
 
 const app = express();
 const port = process.env.PORT || 3000;
-const host = 'https://64.29.17.129';
 
 axios.defaults.withCredentials = true;
 
@@ -51,7 +50,7 @@ app.use(cors({
 
 app.options('*', cors());
 
-app.listen(port, ${host}, () => {
+app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });
 
