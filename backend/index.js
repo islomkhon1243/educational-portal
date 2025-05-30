@@ -48,6 +48,8 @@ app.use(cors({
     credentials: true      // Разрешаем отправку cookies
 }));
 
+app.options('*', cors());
+
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });
