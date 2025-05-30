@@ -66,7 +66,7 @@
 import axios from 'axios';
 axios.defaults.withCredentials = true;
 
-const host = "http://localhost:3000";
+const host = `${window.location.origin}`;
 
 const getTokenFromCookies = () => {
   const cookies = document.cookie.split("; ");
