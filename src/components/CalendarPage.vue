@@ -52,6 +52,8 @@
 <script>
 import axios from 'axios';
 
+const host = window.location.origin;
+
 export default {
   data() {
     return {
@@ -67,7 +69,7 @@ export default {
   methods: {
     async fetchAdmissionPeriods() {
       try {
-        const response = await axios.get('http://localhost:3000/api/universities');
+        const response = await axios.get(`${host}/api/universities`);
 
         const colorPalette = [
           '#1976D2', // синий
