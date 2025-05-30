@@ -88,7 +88,7 @@
 <script>
 import axios from 'axios';
 
-const host = `${window.location.origin}`;
+const host = window.location.origin;
 
 export default {
   data() {
