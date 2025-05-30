@@ -88,6 +88,8 @@
 <script>
 import axios from 'axios';
 
+const host = `${window.location.origin}`;
+
 export default {
   data() {
     return {
@@ -125,7 +127,7 @@ export default {
   methods: {
     async fetchArticles() {
       try {
-        const response = await axios.get('http://localhost:3000/api/articles');
+        const response = await axios.get('${host}/api/articles');
         this.articles = response.data;
       } catch (error) {
         console.error('Error fetching articles:', error);
@@ -147,7 +149,7 @@ export default {
 
       this.loading = true;
       try {
-        const response = await fetch("http://localhost:3000/api/ai", {
+        const response = await fetch("${host}/api/ai", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
@@ -190,7 +192,7 @@ export default {
     },
     async translateText(text) {
       try {
-        const response = await fetch("http://localhost:3000/api/translate", {
+        const response = await fetch("${host}/api/translate", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
@@ -208,7 +210,7 @@ export default {
     },
     async saveArticleToDB(title, content) {
       try {
-        const response = await fetch("http://localhost:3000/api/articles", {
+        const response = await fetch("${host}/api/articles", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
@@ -227,7 +229,7 @@ export default {
     },
     async loadArticles() {
       try {
-        const response = await fetch("http://localhost:3000/api/articles");
+        const response = await fetch("${host}/api/articles");
         const data = await response.json();
         this.articles = data || [];
       } catch (error) {
