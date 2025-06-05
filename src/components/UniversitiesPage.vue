@@ -36,7 +36,7 @@ import axios from 'axios';
 import { VIcon } from 'vuetify/lib/components';
 
 axios.defaults.withCredentials = true;
-const host = `${window.location.origin}`;
+const host = "https://educational-portal-a3vu.onrender.com";
 const FAVORITES_KEY = 'favorites';
 
 export default {
