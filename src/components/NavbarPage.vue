@@ -108,34 +108,29 @@ export default {
     async checkAuthentication() {
       try {
         const response = await axios.get(`${host}/api/profile`, {
-          withCredentials: true,
-          headers: {
-            "Cookie": `token=${token}`
-          }
+          withCredentials: true
         });
-
+    
         if (response.data.userId) {
           this.isAuthenticated = true;
-          await this.getUsername();
+          this.userId = response.data.userId;
+          localStorage.setItem('userId', this.userId);
+    
+          // Прямо здесь — получаем имя пользователя
+          const userResp = await axios.get(`${host}/api/user/${this.userId}`, {
+            withCredentials: true
+          });
+          if (userResp.data.email) {
+            this.username = userResp.data.email.split('@')[0];
+          }
         } else {
           this.isAuthenticated = false;
+          this.username = '';
         }
       } catch (error) {
         this.isAuthenticated = false;
+        this.username = '';
         console.error("Ошибка аутентификации:", error);
-      }
-    },
-    async getUsername() {
-      try {
-        const userId = localStorage.getItem('userId');
-        const response = await axios.get(`${host}/api/user/${userId}`, {
-          withCredentials: true
-        });
-        if (response.data.email) {
-          this.username = response.data.email.split('@')[0];
-        }
-      } catch (error) {
-        console.error('Error fetching username:', error);
       }
     },
   },
