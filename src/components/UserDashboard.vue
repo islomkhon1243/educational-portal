@@ -67,7 +67,7 @@
 <script>
 import axios from 'axios';
 
-const host = `${window.location.origin}`;
+const host = "https://educational-portal-a3vu.onrender.com";
 
 export default {
   data() {
@@ -164,7 +164,7 @@ export default {
     async fetchTestResult() {
       try {
         const userId = localStorage.getItem('userId');
-        const response = await axios.get(`http://localhost:3000/api/results/${userId}`);
+        const response = await axios.get(`${host}/api/results/${userId}`);
         if (response.data) {
           this.testResult = {
             ...response.data,
