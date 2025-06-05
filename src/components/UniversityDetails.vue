@@ -233,6 +233,8 @@
 <script>
 import axios from 'axios';
 
+const host = "https://educational-portal-a3vu.onrender.com";
+
 export default {
   data() {
     return {
@@ -286,7 +288,7 @@ export default {
   methods: {
     async fetchUniversityDetails() {
       try {
-        const response = await axios.get(`http://localhost:3000/api/universities/${this.$route.params.id}`);
+        const response = await axios.get(`${host}/api/universities/${this.$route.params.id}`);
         this.university = response.data;
         this.checkApplicationPeriod(); // Проверяем доступность формы на основе дат
 
@@ -304,7 +306,7 @@ export default {
     },
     async fetchUserData(userId) {
       try {
-        const response = await axios.get(`http://localhost:3000/api/user/${userId}`);
+        const response = await axios.get(`${host}/api/user/${userId}`);
         // Заполняем поля формы данными пользователя
         this.applicant.name = response.data.name;
         this.applicant.email = response.data.email;
@@ -315,7 +317,7 @@ export default {
     async fetchUserDocuments() {
       const userId = localStorage.getItem('userId');
       try {
-        const response = await axios.get(`http://localhost:3000/api/user-documents/${userId}`);
+        const response = await axios.get(`${host}/api/user-documents/${userId}`);
         this.userDocuments = response.data; // Сохраняем документы пользователя
       } catch (error) {
         console.error("Error fetching user documents:", error);
@@ -373,7 +375,7 @@ export default {
 
       try {
         // Отправляем форму на сервер
-        await axios.post(`http://localhost:3000/api/applications/${this.university.id}`, formData, {
+        await axios.post(`${host}/api/applications/${this.university.id}`, formData, {
           headers: {
             'Content-Type': 'multipart/form-data'
           }
@@ -417,7 +419,7 @@ export default {
 
       try {
         // Отправляем форму на сервер
-        await axios.get(`http://localhost:3000/api/applications/checkUser/${this.$route.params.id}`, {
+        await axios.get(`${host}/api/applications/checkUser/${this.$route.params.id}`, {
           headers: {
             'Content-Type': 'multipart/form-data'
           },
