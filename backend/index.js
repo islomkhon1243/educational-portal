@@ -227,8 +227,8 @@ app.post('/api/login', async (req, res) => {
 
                 res.cookie("token", token, {
                     httpOnly: true,  // Доступно только серверу
-                    // secure: true,    // Только HTTPS (уберите для локальной разработки)
-                    sameSite: "Strict", // Защита от CSRF
+                    secure: true,    // Только HTTPS (уберите для локальной разработки)
+                    sameSite: "None", // Защита от CSRF
                     path: "/",
                     maxAge: 60 * 60 * 1000 // 1 час
                 });
