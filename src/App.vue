@@ -9,11 +9,10 @@
 
 <script>
 import NavbarPage from "@/components/NavbarPage.vue";
-import AdminNavbar from "@/components/AdminNavbar.vue";
 
 export default {
   name: 'App',
-  components: {NavbarPage, AdminNavbar},
+  components: {NavbarPage},
   data() {
     return {
       userStatus: localStorage.getItem('userStatus') // Загружаем статус пользователя из localStorage
