@@ -1,15 +1,8 @@
 <template>
   <v-app>
+    <NavbarPage />
     <v-main>
-      <div v-if="userStatus === 'admin'">
-        <!-- Структура для админа -->
-        <AdminNavbar />
-      </div>
-      <div v-else>
-        <!-- Структура для обычного пользователя -->
-        <NavbarPage />
-        <router-view />
-      </div>
+      <router-view />
     </v-main>
   </v-app>
 </template>
