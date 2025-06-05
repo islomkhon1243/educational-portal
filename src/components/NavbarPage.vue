@@ -26,39 +26,29 @@
     </div>
 
     <!-- Навигационная панель для мобильных -->
-    <v-navigation-drawer
-        v-model="drawer"
-        app
-        temporary
-        class="d-md-none"
+    <v-menu
+      bottom
+      left
+      offset-y
     >
-      <v-list nav dense>
-        <v-list-item to="/universities" @click="drawer = false">
+      <template #activator="{ on, attrs }">
+        <v-btn icon v-bind="attrs" v-on="on">
+          <v-icon>mdi-menu</v-icon>
+        </v-btn>
+      </template>
+    
+      <v-list>
+        <v-list-item to="/universities">
           <v-list-item-title>Университеты</v-list-item-title>
         </v-list-item>
-        <v-list-item to="/articles" @click="drawer = false">
+        <v-list-item to="/articles">
           <v-list-item-title>Статьи</v-list-item-title>
         </v-list-item>
-        <v-list-item to="/calendar" @click="drawer = false">
+        <v-list-item to="/calendar">
           <v-list-item-title>Календарь</v-list-item-title>
         </v-list-item>
-
-        <v-divider></v-divider>
-
-        <v-list-item to="/dashboard" v-if="isAuthenticated" @click="drawer = false">
-          <v-list-item-title>{{ username || 'Guest' }}</v-list-item-title>
-        </v-list-item>
-        <v-list-item to="/logout" v-if="isAuthenticated" @click="drawer = false">
-          <v-list-item-title>Выйти</v-list-item-title>
-        </v-list-item>
-        <v-list-item to="/login" v-if="!isAuthenticated" @click="drawer = false">
-          <v-list-item-title>Вход</v-list-item-title>
-        </v-list-item>
-        <v-list-item to="/register" v-if="!isAuthenticated" @click="drawer = false">
-          <v-list-item-title>Зарегистрироваться</v-list-item-title>
-        </v-list-item>
       </v-list>
-    </v-navigation-drawer>
+    </v-menu>
   </v-app-bar>
 </template>
 
