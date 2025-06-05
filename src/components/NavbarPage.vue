@@ -66,7 +66,7 @@
 import axios from 'axios';
 axios.defaults.withCredentials = true;
 
-const host = `${window.location.origin}`;
+const host = "https://educational-portal-a3vu.onrender.com";
 
 const getTokenFromCookies = () => {
   const cookies = document.cookie.split("; ");
