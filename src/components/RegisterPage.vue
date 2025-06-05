@@ -23,6 +23,8 @@
 <script>
 import axios from 'axios';
 
+const host = "https://educational-portal-a3vu.onrender.com";
+
 export default {
   data() {
     return {
@@ -38,7 +40,7 @@ export default {
   methods: {
     async sendVerification() {
       try {
-        await axios.post('http://localhost:3000/api/send-verification', { email: this.email });
+        await axios.post(`${host}/api/send-verification`, { email: this.email });
         this.isVerifying = true;
         this.successMessage = 'Verification code sent to your email.';
         this.errorMessage = '';
@@ -54,7 +56,7 @@ export default {
     },
     async verifyCode() {
       try {
-        await axios.post('http://localhost:3000/api/verify-code', {
+        await axios.post(`${host}/api/verify-code`, {
           email: this.email,
           code: this.verificationCode,
           name: this.name,
