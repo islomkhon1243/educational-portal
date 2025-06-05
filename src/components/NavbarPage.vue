@@ -2,9 +2,6 @@
   <v-app-bar app>
     <v-toolbar-title class="mr-4 ml-4">Futurum</v-toolbar-title>
 
-    <!-- Кнопка бургера для мобильных -->
-    <v-app-bar-nav-icon @click="drawer = !drawer" class="d-md-none"></v-app-bar-nav-icon>
-
     <!-- Меню для планшетов и десктопов -->
     <div class="d-none d-md-flex">
       <v-btn text to="/universities">Университеты</v-btn>
