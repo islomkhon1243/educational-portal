@@ -32,6 +32,8 @@
 <script>
 import axios from 'axios';
 
+const host = "https://educational-portal-a3vu.onrender.com";
+
 export default {
   data() {
     return {
@@ -46,7 +48,7 @@ export default {
   methods: {
     async fetchResources() {
       try {
-        const response = await axios.get('http://localhost:3000/api/resources');
+        const response = await axios.get(`${host}/api/resources`);
         this.resources = response.data;
         this.filteredResources = this.resources;
       } catch (error) {
