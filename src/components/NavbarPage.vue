@@ -109,7 +109,7 @@ export default {
         const response = await axios.get(`${host}/api/profile`, {
           withCredentials: true,
           headers: {
-            "Cookie": token=${token}
+            "Cookie": `token=${token}`
           }
         });
     
