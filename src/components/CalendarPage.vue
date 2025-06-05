@@ -52,7 +52,7 @@
 <script>
 import axios from 'axios';
 
-const host = window.location.origin;
+const host = "https://educational-portal-a3vu.onrender.com";
 
 export default {
   data() {
