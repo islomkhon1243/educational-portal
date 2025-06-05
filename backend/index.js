@@ -44,7 +44,7 @@ const pool = new Pool({
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(cors({
-    origin: 'https://educational-portal-two.vercel.app',          // Доверяем любому origin
+    origin: '*',          // Доверяем любому origin
     credentials: true      // Разрешаем отправку cookies
 }));
 
