@@ -44,7 +44,7 @@ const pool = new Pool({
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(cors({
-    origin: '*',          // Доверяем любому origin
+    origin: true,          // Доверяем любому origin
     credentials: true      // Разрешаем отправку cookies
 }));
 
