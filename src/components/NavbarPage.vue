@@ -30,6 +30,7 @@
       bottom
       left
       offset-y
+      class="d-md-none"
     >
       <template #activator="{ on, attrs }">
         <v-btn icon v-bind="attrs" v-on="on">
@@ -37,7 +38,8 @@
         </v-btn>
       </template>
     
-      <v-list>
+      <v-list dense>
+        <!-- Навигация -->
         <v-list-item to="/universities">
           <v-list-item-title>Университеты</v-list-item-title>
         </v-list-item>
@@ -47,6 +49,26 @@
         <v-list-item to="/calendar">
           <v-list-item-title>Календарь</v-list-item-title>
         </v-list-item>
+    
+        <v-divider></v-divider>
+    
+        <!-- Авторизация -->
+        <template v-if="isAuthenticated">
+          <v-list-item to="/dashboard">
+            <v-list-item-title>{{ username || 'Гость' }}</v-list-item-title>
+          </v-list-item>
+          <v-list-item to="/logout">
+            <v-list-item-title>Выйти</v-list-item-title>
+          </v-list-item>
+        </template>
+        <template v-else>
+          <v-list-item to="/login">
+            <v-list-item-title>Вход</v-list-item-title>
+          </v-list-item>
+          <v-list-item to="/register">
+            <v-list-item-title>Зарегистрироваться</v-list-item-title>
+          </v-list-item>
+        </template>
       </v-list>
     </v-menu>
   </v-app-bar>
