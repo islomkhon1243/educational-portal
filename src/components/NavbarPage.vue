@@ -99,7 +99,9 @@ export default {
     this.checkAuthentication();
   },
   watch: {
-    '$route': 'checkAuthentication',
+    $route() {
+      this.checkAuthentication();
+    }
   },
   methods: {
     async checkAuthentication() {
@@ -107,15 +109,20 @@ export default {
         const response = await axios.get(`${host}/api/profile`, {
           withCredentials: true,
           headers: {
-            "Cookie": `token=${token}`
+            "Cookie": token=${token}
           }
         });
-
+    
         if (response.data.userId) {
           this.isAuthenticated = true;
-          await this.getUsername();
+          this.userId = response.data.userId;
+    
+          localStorage.setItem('userId', this.userId); // гарантируем
+    
+          await this.getUsername(); // ГАРАНТИРОВАННЫЙ вызов
         } else {
           this.isAuthenticated = false;
+          this.username = '';
         }
       } catch (error) {
         this.isAuthenticated = false;
@@ -124,15 +131,15 @@ export default {
     },
     async getUsername() {
       try {
-        const userId = localStorage.getItem('userId');
-        const response = await axios.get(`${host}/api/user/${userId}`, {
+        const response = await axios.get(`${host}/api/user/${this.userId}`, {
           withCredentials: true
         });
+    
         if (response.data.email) {
           this.username = response.data.email.split('@')[0];
         }
       } catch (error) {
-        console.error('Error fetching username:', error);
+        console.error('Ошибка получения username:', error);
       }
     },
   },
