@@ -28,7 +28,6 @@
     <!-- Навигационная панель для мобильных -->
     <v-navigation-drawer
         v-model="drawer"
-        app
         temporary
         class="d-md-none"
     >
