@@ -43,9 +43,18 @@ const pool = new Pool({
 
 app.use(bodyParser.json());
 app.use(cookieParser());
+
+const allowedOrigins = ['https://educational-portal-two.vercel.app'];
+
 app.use(cors({
-    origin: true,          // Доверяем любому origin
-    credentials: true      // Разрешаем отправку cookies
+  origin: function(origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true
 }));
 
 app.options('*', cors());
