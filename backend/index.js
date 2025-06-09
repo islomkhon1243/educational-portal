@@ -153,10 +153,6 @@ app.post('/api/send-verification', async (req, res) => {
             [email, code, expiresAt]
         );
 
-      transporter.verify()
-        .then(() => console.log('SMTP ready'))
-        .catch(err => console.error('SMTP verification failed:', err));
-
         // Отправляем код на email
         await transporter.sendMail({
             from: 'islomkhon1243@gmail.com',
