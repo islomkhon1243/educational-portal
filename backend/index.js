@@ -156,6 +156,13 @@ app.post('/api/send-verification', async (req, res) => {
         const code = crypto.randomInt(100000, 999999).toString();
         const expiresAt = new Date(Date.now() + 60 * 60 * 1000); // Код действует 1 час
 
+        // 🔍 Логируем, что будет вставлено
+        console.log(`[EMAIL_VERIFICATION] Inserting:`, {
+            email,
+            code,
+            expiresAt: expiresAt.toISOString()
+        });
+      
         // Сохраняем код в базе данных
         await pool.query(
             'INSERT INTO email_verifications (email, code, expires_at) VALUES ($1, $2, $3) ON CONFLICT (email) DO UPDATE SET code = $2, expires_at = $3',
