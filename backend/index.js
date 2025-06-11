@@ -165,8 +165,8 @@ app.post('/api/send-verification', async (req, res) => {
       
         // Сохраняем код в базе данных
         await pool.query(
-          'INSERT INTO email_verifications (email, code, expires_at) VALUES ($1, $2, $3) ON CONFLICT (email) DO UPDATE SET code = EXCLUDED.code, expires_at = EXCLUDED.expires_at',
-          [email, code, expiresAt]
+            'INSERT INTO email_verifications (email, code, expires_at) VALUES ($1, $2, $3) ON CONFLICT (email) DO UPDATE SET code = $2, expires_at = $3',
+            [email, code, expiresAt]
         );
 
         // Отправляем код на email
