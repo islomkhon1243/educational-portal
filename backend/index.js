@@ -163,11 +163,24 @@ app.post('/api/send-verification', async (req, res) => {
             expiresAt: expiresAt.toISOString()
         });
       
-        // Сохраняем код в базе данных
-        await pool.query(
-          'INSERT INTO email_verifications (email, code, expires_at) VALUES ($1, $2, $3) ON CONFLICT ON CONSTRAINT email_verifications_email_key DO UPDATE SET code = $2, expires_at = $3',
-          [email, code, expiresAt]
+        const { rows } = await pool.query(
+            'SELECT id FROM email_verifications WHERE email = $1',
+            [email]
         );
+        
+        if (rows.length > 0) {
+            // Запись уже существует — делаем UPDATE
+            await pool.query(
+                'UPDATE email_verifications SET code = $1, expires_at = $2 WHERE email = $3',
+                [code, expiresAt, email]
+            );
+        } else {
+            // Записи нет — делаем INSERT
+            await pool.query(
+                'INSERT INTO email_verifications (email, code, expires_at) VALUES ($1, $2, $3)',
+                [email, code, expiresAt]
+            );
+        }
 
         // Отправляем код на email
         await transporter.sendMail({
