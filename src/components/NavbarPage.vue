@@ -171,9 +171,14 @@ export default {
   position: absolute !important;
 }
 
-/* Скрытие на десктопе */
+  /* Глобально скрываем мобильное меню и его контент на десктопе */
 @media (min-width: 961px) {
-  .v-menu--inline {
+  .v-menu--inline.d-md-none {
+    display: none !important;
+  }
+
+  /* ВАЖНО: сам popover, который Teleport рендерит */
+  .v-overlay__content.menuable__content__active {
     display: none !important;
   }
 }
