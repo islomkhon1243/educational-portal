@@ -565,8 +565,9 @@ export default {
   word-break: break-word;
 }
 
-h3, li {
+h3 {
   margin-bottom: 1em;
+  margin-top: 1em;
 }
 
 table.score-table {
