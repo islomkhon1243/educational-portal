@@ -4,7 +4,9 @@
     <h2 v-else>Введите код подтверждения</h2>
 
     <form v-if="!isVerifying" @submit.prevent="sendVerification">
-      <input v-model="name" placeholder="Ваше имя" required class="input-field" />
+      <input v-model="lastname" placeholder="Ваша фамилия" required class="input-field" />
+      <input v-model="firstname" placeholder="Ваше имя" required class="input-field" />
+      <input v-model="middlename" placeholder="Ваше отчество" class="input-field" />
       <input v-model="email" type="email" placeholder="Ваш email" required class="input-field" />
       <input v-model="password" type="password" placeholder="Пароль" required class="input-field" />
       <button type="submit" class="button">Отправить код подтверждения</button>
@@ -59,7 +61,9 @@ export default {
         await axios.post(`${host}/api/verify-code`, {
           email: this.email,
           code: this.verificationCode,
-          name: this.name,
+          lastname: this.lastname,
+          firstname: this.firstname,
+          middlename: this.middlename,
           password: this.password
         });
         this.successMessage = 'Registration successful! Please log in.';
