@@ -27,9 +27,8 @@
         <v-card-title>{{ selectedEvent.name }}</v-card-title>
         <v-card-text>
           <p><strong>Локация:</strong> {{ selectedEvent.location }}</p>
-          <p><strong>Основан:</strong> {{ selectedEvent.established }}</p>
+          <p><strong>Приемная комиссия:</strong> {{ formatDate(selectedEvent.start) }} - {{ formatDate(selectedEvent.end) }}</p>
           <p>
-            <strong>Описание:</strong>
             <router-link
                 v-if="selectedEvent?.id"
                 :to="`/universities/${selectedEvent.id}`"
@@ -39,7 +38,6 @@
               Перейти на страницу университета
             </router-link>
           </p>
-          <p><strong>Приемная комиссия:</strong> {{ formatDate(selectedEvent.start) }} - {{ formatDate(selectedEvent.end) }}</p>
         </v-card-text>
         <v-card-actions>
           <v-btn color="primary" text @click="dialog = false">Закрыть</v-btn>
