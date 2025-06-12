@@ -565,6 +565,23 @@ export default {
   word-break: break-word;
 }
 
+p {
+  margin-bottom: 1em;
+}
+
+table.passing-scores {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center;
+}
+
+table.passing-scores th,
+table.passing-scores td {
+  padding: 8px;
+  border: 1px solid #ccc;
+  text-align: center;
+}
+
 /* Адаптивность */
 
 /* Планшеты и меньше: меняем на вертикальный стек с разделением */
