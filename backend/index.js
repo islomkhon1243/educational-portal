@@ -239,7 +239,7 @@ app.post('/api/applicants', async (req, res) => {
 app.post('/api/register', async (req, res) => {
     const { lastname, firstname, middlename, email, password } = req.body;
     const hashedPassword = await bcrypt.hash(password, 10);
-    const result = await pool.query('INSERT INTO applicants (lastname, firstname, middlename, email, password) VALUES ($1, $2, $3) RETURNING *', [name, email, hashedPassword]);
+    const result = await pool.query('INSERT INTO applicants (lastname, firstname, middlename, email, password) VALUES ($1, $2, $3, $4, $5) RETURNING *', [lastname, firstname, middlename, email, hashedPassword]);
     res.json(result.rows[0]);
 });
 
@@ -336,7 +336,7 @@ app.get('/api/universities/:id', async (req, res) => {
 });
 
 app.post('/api/applications/:universityId', upload.single('file'), async (req, res) => {
-    const { name, email, personalStatement, selectedFilePath, userId } = req.body;
+    const { lastname, firstname, middlename, email, personalStatement, selectedFilePath, userId } = req.body;
     const universityId = req.params.universityId;
 
     const filePath = req.file ? req.file.path : selectedFilePath;
@@ -380,8 +380,8 @@ app.post('/api/applications/:universityId', upload.single('file'), async (req, r
 
         // Если заявок меньше 4 и нет дубликатов, добавляем новую
         await pool.query(
-            'INSERT INTO applications (university_id, name, email, personal_statement, file_path, user_id, created_at) VALUES ($1, $2, $3, $4, $5, $6, NOW())',
-            [universityId, name, email, personalStatement, filePath, userId]
+            'INSERT INTO applications (university_id, lastname, firstname, middlename, email, personal_statement, file_path, user_id, created_at) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, NOW())',
+            [universityId, lastname, firstname, middlename, email, personalStatement, filePath, userId]
         );
         res.status(201).send({ message: 'Application submitted successfully!' });
     } catch (error) {
