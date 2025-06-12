@@ -136,7 +136,9 @@
         </v-card-title>
         <v-card-text>
           <v-form @submit.prevent="submitApplication">
-            <v-text-field v-model="applicant.name" label="Ваше имя" required outlined></v-text-field>
+            <v-text-field v-model="applicant.lastname" label="Ваша фамилия" required outlined></v-text-field>
+            <v-text-field v-model="applicant.firstname" label="Ваше имя" required outlined></v-text-field>
+            <v-text-field v-model="applicant.middlename" label="Ваше отчество" outlined></v-text-field>
             <v-text-field v-model="applicant.email" label="Ваша почта" type="email" required outlined></v-text-field>
             <v-textarea v-model="applicant.personalStatement" label="Личное заявление" required outlined rows="4"></v-textarea>
             <v-file-input
@@ -239,7 +241,7 @@ export default {
   data() {
     return {
       university: {},
-      applicant: { name: '', email: '', personalStatement: '' },
+      applicant: { lastname: '', firstname: '', middlename: '', email: '', personalStatement: '' },
       file: null,
       selectedDocument1: null, // Переменная для хранения выбранного документа
       selectedDocument2: null,
@@ -308,7 +310,9 @@ export default {
       try {
         const response = await axios.get(`${host}/api/user/${userId}`);
         // Заполняем поля формы данными пользователя
-        this.applicant.name = response.data.name;
+        this.applicant.lastname = response.data.lastname;
+        this.applicant.firstname = response.data.firstname;
+        this.applicant.middlename = response.data.middlename;
         this.applicant.email = response.data.email;
       } catch (error) {
         console.error("Error fetching user data:", error);
@@ -349,7 +353,9 @@ export default {
     async submitApplication() {
       const userId = localStorage.getItem("userId");
       const formData = new FormData();
-      formData.append('name', this.applicant.name);
+      formData.append('lastname', this.applicant.lastname);
+      formData.append('firstname', this.applicant.firstname);
+      formData.append('middlename', this.applicant.middlename);
       formData.append('email', this.applicant.email);
       formData.append('personalStatement', this.applicant.personalStatement);
       formData.append('userId', userId);
@@ -403,7 +409,9 @@ export default {
       }
     },
     resetForm() {
-      this.applicant.name = '';
+      this.applicant.lastname = '';
+      this.applicant.firstname = '';
+      this.applicant.middlename = '';
       this.applicant.email = '';
       this.applicant.personalStatement = '';
       this.file = null;
