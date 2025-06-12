@@ -23,51 +23,46 @@
     </div>
 
     <!-- Навигационная панель для мобильных -->
-    <v-menu
-      bottom
-      left
-      offset-y
-      class="d-md-none"
-    >
-      <template #activator="{ on, attrs }">
-        <v-btn icon v-bind="attrs" v-on="on">
-          <v-icon>mdi-menu</v-icon>
-        </v-btn>
-      </template>
-    
-      <v-list dense>
-        <!-- Навигация -->
-        <v-list-item to="/universities">
-          <v-list-item-title>Университеты</v-list-item-title>
-        </v-list-item>
-        <v-list-item to="/articles">
-          <v-list-item-title>Статьи</v-list-item-title>
-        </v-list-item>
-        <v-list-item to="/calendar">
-          <v-list-item-title>Календарь</v-list-item-title>
-        </v-list-item>
-    
-        <v-divider></v-divider>
-    
-        <!-- Авторизация -->
-        <template v-if="isAuthenticated">
-          <v-list-item to="/dashboard">
-            <v-list-item-title>{{ firstname || 'Гость' }}</v-list-item-title>
-          </v-list-item>
-          <v-list-item to="/logout">
-            <v-list-item-title>Выйти</v-list-item-title>
-          </v-list-item>
+    <div class="d-flex d-md-none">
+      <v-menu bottom left offset-y>
+        <template #activator="{ on, attrs }">
+          <v-btn icon v-bind="attrs" v-on="on">
+            <v-icon>mdi-menu</v-icon>
+          </v-btn>
         </template>
-        <template v-else>
-          <v-list-item to="/login">
-            <v-list-item-title>Вход</v-list-item-title>
+
+        <v-list dense>
+          <v-list-item to="/universities">
+            <v-list-item-title>Университеты</v-list-item-title>
           </v-list-item>
-          <v-list-item to="/register">
-            <v-list-item-title>Зарегистрироваться</v-list-item-title>
+          <v-list-item to="/articles">
+            <v-list-item-title>Статьи</v-list-item-title>
           </v-list-item>
-        </template>
-      </v-list>
-    </v-menu>
+          <v-list-item to="/calendar">
+            <v-list-item-title>Календарь</v-list-item-title>
+          </v-list-item>
+
+          <v-divider></v-divider>
+
+          <template v-if="isAuthenticated">
+            <v-list-item to="/dashboard">
+              <v-list-item-title>{{ firstname || 'Гость' }}</v-list-item-title>
+            </v-list-item>
+            <v-list-item to="/logout">
+              <v-list-item-title>Выйти</v-list-item-title>
+            </v-list-item>
+          </template>
+          <template v-else>
+            <v-list-item to="/login">
+              <v-list-item-title>Вход</v-list-item-title>
+            </v-list-item>
+            <v-list-item to="/register">
+              <v-list-item-title>Зарегистрироваться</v-list-item-title>
+            </v-list-item>
+          </template>
+        </v-list>
+      </v-menu>
+    </div>
   </v-app-bar>
 </template>
 
@@ -147,50 +142,19 @@ export default {
 </script>
 
 <style scoped>
-/* Убираем стандартный margin для кнопок, чтобы они выглядели компактнее */
 .v-btn {
   min-width: auto;
 }
 
 .username-btn {
-  font-weight: 700; /* Жирный шрифт */
-  color: #1976D2; /* Синий цвет, например */
-  border-bottom: 2px solid #1976D2; /* Нижняя линия для акцента */
-  cursor: default; /* Курсор по умолчанию, если не кликабельно */
+  font-weight: 700;
+  color: #1976D2;
+  border-bottom: 2px solid #1976D2;
+  cursor: default;
 }
-
-/* Для мобильного меню drawer: */
 
 .username-list-item {
   font-weight: 700;
   color: #1976D2;
-}
-
-.v-menu__content {
-  z-index: 3000 !important;
-  position: absolute !important;
-}
-
-  /* Глобально скрываем мобильное меню и его контент на десктопе */
-@media (min-width: 961px) {
-  .d-md-none {
-    display: none !important;
-  }
-
-  /* ВАЖНО: сам popover, который Teleport рендерит */
-  .v-overlay__content.menuable__content__active {
-    display: none !important;
-  }
-}
-
-/* Показывать на мобилке */
-@media (max-width: 960px) {
-  .d-md-none {
-    display: inline-flex !important;
-  }
-
-  .d-md-flex {
-    display: none !important;
-  }
 }
 </style>
