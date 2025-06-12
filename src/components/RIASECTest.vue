@@ -116,6 +116,8 @@ import questionsData from '@/assets/RIASEC_test_questions.json';
 import resultData from '@/assets/RIASEC_result_data.json';
 import axios from 'axios';
 
+const host = "https://educational-portal-a3vu.onrender.com";
+  
 export default {
   name: 'RIASECTest',
   data() {
@@ -173,7 +175,7 @@ export default {
     async saveResultToDB(type, result) {
       try {
         const userId = localStorage.getItem('userId');
-        await axios.post('http://localhost:3000/api/results', {
+        await axios.post(`${host}/api/results`, {
           userId,
           type,
           description: result.description,
