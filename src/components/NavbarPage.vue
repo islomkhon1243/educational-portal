@@ -36,7 +36,7 @@
             <v-icon>mdi-menu</v-icon>
           </v-btn>
         </template>
-
+    
         <v-list dense>
           <v-list-item to="/universities">
             <v-list-item-title>Университеты</v-list-item-title>
@@ -47,12 +47,14 @@
           <v-list-item to="/calendar">
             <v-list-item-title>Календарь</v-list-item-title>
           </v-list-item>
-
+    
           <v-divider></v-divider>
-
+    
           <template v-if="isAuthenticated">
             <v-list-item to="/dashboard">
-              <v-list-item-title>{{ firstname || 'Гость' }}</v-list-item-title>
+              <v-list-item-title class="username-list-item">
+                {{ firstname || 'Гость' }}
+              </v-list-item-title>
             </v-list-item>
             <v-list-item to="/logout">
               <v-list-item-title>Выйти</v-list-item-title>
