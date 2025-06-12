@@ -167,22 +167,21 @@ export default {
 }
 
 .v-menu__content {
-  z-index: 3000 !important; /* выше, чем app-bar (обычно 1100–1300) */
-  position: absolute !important; /* гарантировано поверх */
+  z-index: 3000 !important;
+  position: absolute !important;
 }
 
-/* Скрываем бургер-иконку и меню на десктопе */
-.d-md-none {
-  display: none !important;
+/* Скрытие на десктопе */
+@media (min-width: 961px) {
+  .v-menu--inline {
+    display: none !important;
+  }
 }
 
+/* Показывать на мобилке */
 @media (max-width: 960px) {
   .d-md-none {
     display: inline-flex !important;
-  }
-
-  .d-md-none .v-menu__content {
-    display: block !important;
   }
 
   .d-md-flex {
