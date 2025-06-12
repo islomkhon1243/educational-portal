@@ -166,15 +166,25 @@ export default {
   color: #1976D2;
 }
 
-/* Скрыть бургер-иконку на больших экранах */
+.v-menu__content {
+  z-index: 3000 !important; /* выше, чем app-bar (обычно 1100–1300) */
+  position: absolute !important; /* гарантировано поверх */
+}
+
+/* Скрываем бургер-иконку и меню на десктопе */
 .d-md-none {
-  display: none;
+  display: none !important;
 }
 
 @media (max-width: 960px) {
   .d-md-none {
     display: inline-flex !important;
   }
+
+  .d-md-none .v-menu__content {
+    display: block !important;
+  }
+
   .d-md-flex {
     display: none !important;
   }
