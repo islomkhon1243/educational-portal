@@ -565,7 +565,7 @@ export default {
   word-break: break-word;
 }
 
-p {
+h3, li {
   margin-bottom: 1em;
 }
 
