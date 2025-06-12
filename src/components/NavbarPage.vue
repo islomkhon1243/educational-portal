@@ -135,8 +135,8 @@ export default {
           withCredentials: true
         });
     
-        if (response.data.email) {
-          this.username = response.data.email.split('@')[0];
+        if (response.data.firstname) {
+          this.username = response.data.firstname;
         }
       } catch (error) {
         console.error('Ошибка получения username:', error);
