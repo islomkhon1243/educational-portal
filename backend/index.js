@@ -237,9 +237,9 @@ app.post('/api/applicants', async (req, res) => {
 
 // User registration
 app.post('/api/register', async (req, res) => {
-    const { name, email, password } = req.body;
+    const { lastname, firstname, middlename, email, password } = req.body;
     const hashedPassword = await bcrypt.hash(password, 10);
-    const result = await pool.query('INSERT INTO applicants (name, email, password) VALUES ($1, $2, $3) RETURNING *', [name, email, hashedPassword]);
+    const result = await pool.query('INSERT INTO applicants (lastname, firstname, middlename, email, password) VALUES ($1, $2, $3) RETURNING *', [name, email, hashedPassword]);
     res.json(result.rows[0]);
 });
 
