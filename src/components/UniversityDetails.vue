@@ -569,14 +569,14 @@ p {
   margin-bottom: 1em;
 }
 
-table.passing-scores {
+table.score-table {
   width: 100%;
   border-collapse: collapse;
   text-align: center;
 }
 
-table.passing-scores th,
-table.passing-scores td {
+table.score-table th,
+table.score-table td {
   padding: 8px;
   border: 1px solid #ccc;
   text-align: center;
