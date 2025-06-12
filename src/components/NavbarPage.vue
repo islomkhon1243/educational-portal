@@ -23,150 +23,74 @@
     </div>
 
     <!-- Навигационная панель для мобильных -->
-    <v-menu
-      bottom
-      left
-      offset-y
-      class="d-md-none"
-    >
-      <template #activator="{ on, attrs }">
-        <v-btn icon v-bind="attrs" v-on="on">
-          <v-icon>mdi-menu</v-icon>
-        </v-btn>
-      </template>
-    
-      <v-list dense>
-        <!-- Навигация -->
-        <v-list-item to="/universities">
-          <v-list-item-title>Университеты</v-list-item-title>
-        </v-list-item>
-        <v-list-item to="/articles">
-          <v-list-item-title>Статьи</v-list-item-title>
-        </v-list-item>
-        <v-list-item to="/calendar">
-          <v-list-item-title>Календарь</v-list-item-title>
-        </v-list-item>
-    
-        <v-divider></v-divider>
-    
-        <!-- Авторизация -->
-        <template v-if="isAuthenticated">
-          <v-list-item to="/dashboard">
-            <v-list-item-title>{{ firstname || 'Гость' }}</v-list-item-title>
-          </v-list-item>
-          <v-list-item to="/logout">
-            <v-list-item-title>Выйти</v-list-item-title>
-          </v-list-item>
+    <div class="d-flex d-md-none">
+      <v-menu
+        bottom
+        left
+        offset-y
+        content-class="mobile-menu-content"
+        attach="body"
+      >
+        <template #activator="{ on, attrs }">
+          <v-btn icon v-bind="attrs" v-on="on">
+            <v-icon>mdi-menu</v-icon>
+          </v-btn>
         </template>
-        <template v-else>
-          <v-list-item to="/login">
-            <v-list-item-title>Вход</v-list-item-title>
+
+        <v-list dense>
+          <v-list-item to="/universities">
+            <v-list-item-title>Университеты</v-list-item-title>
           </v-list-item>
-          <v-list-item to="/register">
-            <v-list-item-title>Зарегистрироваться</v-list-item-title>
+          <v-list-item to="/articles">
+            <v-list-item-title>Статьи</v-list-item-title>
           </v-list-item>
-        </template>
-      </v-list>
-    </v-menu>
+          <v-list-item to="/calendar">
+            <v-list-item-title>Календарь</v-list-item-title>
+          </v-list-item>
+
+          <v-divider></v-divider>
+
+          <template v-if="isAuthenticated">
+            <v-list-item to="/dashboard">
+              <v-list-item-title>{{ firstname || 'Гость' }}</v-list-item-title>
+            </v-list-item>
+            <v-list-item to="/logout">
+              <v-list-item-title>Выйти</v-list-item-title>
+            </v-list-item>
+          </template>
+          <template v-else>
+            <v-list-item to="/login">
+              <v-list-item-title>Вход</v-list-item-title>
+            </v-list-item>
+            <v-list-item to="/register">
+              <v-list-item-title>Зарегистрироваться</v-list-item-title>
+            </v-list-item>
+          </template>
+        </v-list>
+      </v-menu>
+    </div>
   </v-app-bar>
 </template>
 
-<script>
-import axios from 'axios';
-axios.defaults.withCredentials = true;
-
-const host = "https://educational-portal-a3vu.onrender.com";
-
-const getTokenFromCookies = () => {
-  const cookies = document.cookie.split("; ");
-  const tokenCookie = cookies.find(row => row.startsWith("token="));
-  return tokenCookie ? tokenCookie.split("=")[1] : null;
-};
-
-const token = getTokenFromCookies();
-
-export default {
-  name: 'NavbarPage',
-  data() {
-    return {
-      firstname: '',
-      userId: '',
-      isAuthenticated: false,
-      drawer: false, // состояние для бургер-меню
-    };
-  },
-  mounted() {
-    this.checkAuthentication();
-  },
-  watch: {
-    $route() {
-      this.checkAuthentication();
-    }
-  },
-  methods: {
-    async checkAuthentication() {
-      try {
-        const response = await axios.get(`${host}/api/profile`, {
-          withCredentials: true,
-          headers: {
-            "Cookie": `token=${token}`
-          }
-        });
-    
-        if (response.data.userId) {
-          this.isAuthenticated = true;
-          this.userId = response.data.userId;
-    
-          localStorage.setItem('userId', this.userId); // гарантируем
-    
-          await this.getUsername(); // ГАРАНТИРОВАННЫЙ вызов
-        } else {
-          this.isAuthenticated = false;
-          this.firstname = '';
-        }
-      } catch (error) {
-        this.isAuthenticated = false;
-        console.error("Ошибка аутентификации:", error);
-      }
-    },
-    async getUsername() {
-      try {
-        const response = await axios.get(`${host}/api/user/${this.userId}`, {
-          withCredentials: true
-        });
-    
-        if (response.data.firstname) {
-          this.firstname = response.data.firstname;
-        }
-      } catch (error) {
-        console.error('Ошибка получения username:', error);
-      }
-    },
-  },
-};
-</script>
-
 <style scoped>
-/* Убираем стандартный margin для кнопок, чтобы они выглядели компактнее */
 .v-btn {
   min-width: auto;
 }
 
 .username-btn {
-  font-weight: 700; /* Жирный шрифт */
-  color: #1976D2; /* Синий цвет, например */
-  border-bottom: 2px solid #1976D2; /* Нижняя линия для акцента */
-  cursor: default; /* Курсор по умолчанию, если не кликабельно */
-}
-
-/* Для мобильного меню drawer: */
-
-.username-list-item {
   font-weight: 700;
   color: #1976D2;
+  border-bottom: 2px solid #1976D2;
+  cursor: default;
 }
 
-/* Скрыть бургер-иконку на больших экранах */
+/* Обеспечить z-index для меню */
+.mobile-menu-content {
+  z-index: 3000 !important; /* выше стандартного z-index элементов vuetify */
+  position: absolute !important;
+}
+
+/* Управление отображением по брейкпоинтам */
 .d-md-none {
   display: none;
 }
