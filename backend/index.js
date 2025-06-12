@@ -198,7 +198,7 @@ app.post('/api/send-verification', async (req, res) => {
 });
 
 app.post('/api/verify-code', async (req, res) => {
-    const { email, code, name, password } = req.body;
+    const { email, code, lastname, firstname, middlename, password } = req.body;
 
     try {
         const result = await pool.query(
@@ -211,7 +211,7 @@ app.post('/api/verify-code', async (req, res) => {
         }
 
         const hashedPassword = await bcrypt.hash(password, 10);
-        await pool.query('INSERT INTO applicants (name, email, password) VALUES ($1, $2, $3)', [name, email, hashedPassword]);
+        await pool.query('INSERT INTO applicants (lastname, firstname, middlename, email, password) VALUES ($1, $2, $3, $4, $5)', [lastname, firstname, middlename, email, hashedPassword]);
 
         await pool.query('DELETE FROM email_verifications WHERE email = $1', [email]); // Удаляем использованный код
 
