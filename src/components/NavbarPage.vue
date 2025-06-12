@@ -106,7 +106,7 @@ export default {
   methods: {
     async checkAuthentication() {
       try {
-        const response = await axios.get(${host}/api/profile, {
+        const response = await axios.get(`${host}/api/profile`, {
           withCredentials: true,
           headers: {
             "Cookie": token=${token}
@@ -131,7 +131,7 @@ export default {
     },
     async getUsername() {
       try {
-        const response = await axios.get(${host}/api/user/${this.userId}, {
+        const response = await axios.get(`${host}/api/user/${this.userId}`, {
           withCredentials: true
         });
     
