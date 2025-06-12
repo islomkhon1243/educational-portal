@@ -14,7 +14,7 @@
     <!-- Авторизация - десктоп -->
     <div class="d-none d-md-flex align-center">
       <v-btn text to="/dashboard" v-if="isAuthenticated" class="username-btn">
-        <span v-if="username">{{ username }}</span>
+        <span v-if="firstname">{{ firstname }}</span>
         <span v-else>Guest</span>
       </v-btn>
       <v-btn text v-if="isAuthenticated" to="/logout">Выйти</v-btn>
@@ -52,7 +52,7 @@
         <!-- Авторизация -->
         <template v-if="isAuthenticated">
           <v-list-item to="/dashboard">
-            <v-list-item-title>{{ username || 'Гость' }}</v-list-item-title>
+            <v-list-item-title>{{ firstname || 'Гость' }}</v-list-item-title>
           </v-list-item>
           <v-list-item to="/logout">
             <v-list-item-title>Выйти</v-list-item-title>
@@ -89,7 +89,7 @@ export default {
   name: 'NavbarPage',
   data() {
     return {
-      username: '',
+      firstname: '',
       userId: '',
       isAuthenticated: false,
       drawer: false, // состояние для бургер-меню
@@ -122,7 +122,7 @@ export default {
           await this.getUsername(); // ГАРАНТИРОВАННЫЙ вызов
         } else {
           this.isAuthenticated = false;
-          this.username = '';
+          this.firstname = '';
         }
       } catch (error) {
         this.isAuthenticated = false;
@@ -136,7 +136,7 @@ export default {
         });
     
         if (response.data.firstname) {
-          this.username = response.data.firstname;
+          this.firstname = response.data.firstname;
         }
       } catch (error) {
         console.error('Ошибка получения username:', error);
