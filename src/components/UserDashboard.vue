@@ -3,7 +3,9 @@
     <v-card class="pa-4">
       <v-card-title>Личный кабинет</v-card-title>
       <v-card-text>
-        <v-text-field v-model="user.name" label="ФИО" readonly outlined></v-text-field>
+        <v-text-field v-model="user.lastname" label="Фамилия" readonly outlined></v-text-field>
+        <v-text-field v-model="user.firstname" label="Имя" readonly outlined></v-text-field>
+        <v-text-field v-model="user.middlename" label="Отчество" readonly outlined></v-text-field>
         <v-text-field v-model="user.email" label="Email" readonly outlined></v-text-field>
         <v-btn color="primary" disabled @click="editProfile">Редактировать</v-btn>
       </v-card-text>
@@ -72,7 +74,7 @@ const host = "https://educational-portal-a3vu.onrender.com";
 export default {
   data() {
     return {
-      user: { name: '', email: '' },
+      user: { lastname: '', firstname: '', middlename: '', email: '' },
       documents: [],
       applications: [],
       applicationHeaders: [
