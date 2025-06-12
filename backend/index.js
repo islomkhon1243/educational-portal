@@ -35,7 +35,7 @@ const SCRAPER_API_KEY = '54279510997a8417ada10850a002753b';
 
 // URI-подключение с sslmode=require
 const pool = new Pool({
-  connectionString: 'postgresql://neondb_owner:npg_7LPMXUkv1OJl@ep-autumn-dawn-a28q5n30-pooler.eu-central-1.aws.neon.tech/neondb?sslmode=require',
+  connectionString: 'postgresql://postgres.etenolwjabxrsowmlfst:[postgres]@aws-0-eu-north-1.pooler.supabase.com:6543/postgres',
   ssl: {
     rejectUnauthorized: false
   }
