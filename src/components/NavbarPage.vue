@@ -173,7 +173,7 @@ export default {
 
   /* Глобально скрываем мобильное меню и его контент на десктопе */
 @media (min-width: 961px) {
-  .v-menu--inline.d-md-none {
+  .d-md-none {
     display: none !important;
   }
 
