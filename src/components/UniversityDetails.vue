@@ -142,79 +142,36 @@
             <v-text-field v-model="applicant.email" label="Ваша почта" type="email" required outlined></v-text-field>
             <v-textarea v-model="applicant.personalStatement" label="Личное заявление" required outlined rows="4"></v-textarea>
             <v-file-input
-                v-model="file"
-                label="Документ об образовании (подлинник)(PDF)"
-                accept="application/pdf"
-                outlined
-                :disabled="selectedDocument1"
-                @change="handleFileUpload"
+              v-model="fileEducation"
+              label="Документ об образовании (подлинник)(PDF)"
+              accept="application/pdf"
+              outlined
+              :disabled="selectedDocument1"
+              @change="handleFileUpload('fileEducation')"
             />
-            <!-- Новый компонент для выбора существующих документов -->
-            <v-select
-                v-if="userDocuments.length > 0"
-                v-model="selectedDocument1"
-                :items="userDocuments"
-                item-text="file_name"
-                item-value="file_path"
-                label="Выбрать существующий документ"
-                outlined
-            />
-            <v-divider style="margin-bottom: 20px"></v-divider>
             <v-file-input
-                v-model="file"
-                label="Копия документа, удостоверяющего личность (PDF)"
-                accept="application/pdf"
-                outlined
-                :disabled="selectedDocument2"
-                @change="handleFileUpload"
+              v-model="fileID"
+              label="Копия документа, удостоверяющего личность (PDF)"
+              accept="application/pdf"
+              outlined
+              :disabled="selectedDocument2"
+              @change="handleFileUpload('fileID')"
             />
-            <!-- Новый компонент для выбора существующих документов -->
-            <v-select
-                v-if="userDocuments.length > 0"
-                v-model="selectedDocument2"
-                :items="userDocuments"
-                item-text="file_name"
-                item-value="file_path"
-                label="Выбрать существующий документ"
-                outlined
-            />
-            <v-divider style="margin-bottom: 20px"></v-divider>
             <v-file-input
-                v-model="file"
-                label="Медицинская справка по форме 075-У (PDF)"
-                accept="application/pdf"
-                outlined
-                :disabled="selectedDocument3"
-                @change="handleFileUpload"
+              v-model="fileMedical"
+              label="Медицинская справка по форме 075-У (PDF)"
+              accept="application/pdf"
+              outlined
+              :disabled="selectedDocument3"
+              @change="handleFileUpload('fileMedical')"
             />
-            <!-- Новый компонент для выбора существующих документов -->
-            <v-select
-                v-if="userDocuments.length > 0"
-                v-model="selectedDocument3"
-                :items="userDocuments"
-                item-text="file_name"
-                item-value="file_path"
-                label="Выбрать существующий документ"
-                outlined
-            />
-            <v-divider style="margin-bottom: 20px"></v-divider>
             <v-file-input
-                v-model="file"
-                label="Cертификат единого национального тестирования (PDF)"
-                accept="application/pdf"
-                outlined
-                :disabled="selectedDocument4"
-                @change="handleFileUpload"
-            />
-            <!-- Новый компонент для выбора существующих документов -->
-            <v-select
-                v-if="userDocuments.length > 0"
-                v-model="selectedDocument4"
-                :items="userDocuments"
-                item-text="file_name"
-                item-value="file_path"
-                label="Выбрать существующий документ"
-                outlined
+              v-model="fileENT"
+              label="Сертификат единого национального тестирования (PDF)"
+              accept="application/pdf"
+              outlined
+              :disabled="selectedDocument4"
+              @change="handleFileUpload('fileENT')"
             />
             <v-btn type="submit" color="primary" class="submit-button">Отправить заявку</v-btn>
           </v-form>
@@ -242,8 +199,11 @@ export default {
     return {
       university: {},
       applicant: { lastname: '', firstname: '', middlename: '', email: '', personalStatement: '' },
-      file: null,
-      selectedDocument1: null, // Переменная для хранения выбранного документа
+      fileEducation: null,
+      fileID: null,
+      fileMedical: null,
+      fileENT: null,
+      selectedDocument1: null,
       selectedDocument2: null,
       selectedDocument3: null,
       selectedDocument4: null,
@@ -345,9 +305,20 @@ export default {
     closeDialog() {
       this.dialog = false; // Закрыть диалоговое окно
     },
-    handleFileUpload(event) {
-      if (event.target.files && event.target.files.length > 0) {
-        this.file = event.target.files[0]; // Сохраняем первый загруженный файл
+    handleFileUpload(type) {
+      switch (type) {
+        case 'fileEducation':
+          // обработка fileEducation
+          break;
+        case 'fileID':
+          // обработка fileID
+          break;
+        case 'fileMedical':
+          // обработка fileMedical
+          break;
+        case 'fileENT':
+          // обработка fileENT
+          break;
       }
     },
     async submitApplication() {
