@@ -149,6 +149,16 @@
               :disabled="selectedDocument1"
               @change="handleFileUpload('fileEducation')"
             />
+            <v-select
+                v-if="userDocuments.length > 0"
+                v-model="selectedDocument1"
+                :items="userDocuments"
+                item-text="file_name"
+                item-value="file_path"
+                label="Выбрать существующий документ"
+                outlined
+            />
+            <v-divider style="margin-bottom: 20px"></v-divider>
             <v-file-input
               v-model="fileID"
               label="Копия документа, удостоверяющего личность (PDF)"
@@ -157,6 +167,16 @@
               :disabled="selectedDocument2"
               @change="handleFileUpload('fileID')"
             />
+            <v-select
+                v-if="userDocuments.length > 0"
+                v-model="selectedDocument1"
+                :items="userDocuments"
+                item-text="file_name"
+                item-value="file_path"
+                label="Выбрать существующий документ"
+                outlined
+            />
+            <v-divider style="margin-bottom: 20px"></v-divider>
             <v-file-input
               v-model="fileMedical"
               label="Медицинская справка по форме 075-У (PDF)"
@@ -165,6 +185,16 @@
               :disabled="selectedDocument3"
               @change="handleFileUpload('fileMedical')"
             />
+            <v-select
+                v-if="userDocuments.length > 0"
+                v-model="selectedDocument1"
+                :items="userDocuments"
+                item-text="file_name"
+                item-value="file_path"
+                label="Выбрать существующий документ"
+                outlined
+            />
+            <v-divider style="margin-bottom: 20px"></v-divider>
             <v-file-input
               v-model="fileENT"
               label="Сертификат единого национального тестирования (PDF)"
@@ -172,6 +202,15 @@
               outlined
               :disabled="selectedDocument4"
               @change="handleFileUpload('fileENT')"
+            />
+            <v-select
+                v-if="userDocuments.length > 0"
+                v-model="selectedDocument1"
+                :items="userDocuments"
+                item-text="file_name"
+                item-value="file_path"
+                label="Выбрать существующий документ"
+                outlined
             />
             <v-btn type="submit" color="primary" class="submit-button">Отправить заявку</v-btn>
           </v-form>
