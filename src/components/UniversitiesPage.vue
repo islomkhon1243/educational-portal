@@ -126,7 +126,7 @@ export default {
       } else {
         localStorage.removeItem('futurum_chat');
       }
-    };
+    }
   },
   watch: {
     messages: {
