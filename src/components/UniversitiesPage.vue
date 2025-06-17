@@ -35,7 +35,7 @@
     >
       <v-card width="350" elevation="10" class="pa-2">
         <v-card-title class="text-h6">🤖 Помощник Futurum</v-card-title>
-        <v-card-text style="height: 300px; overflow-y: auto;">
+        <v-card-text style="height: 400px; overflow-y: auto;">
           <div v-for="(msg, i) in messages" :key="i" class="my-2">
             <div v-if="msg.role === 'user'" class="text-right">
               <strong>Вы:</strong> {{ msg.content }}
@@ -301,7 +301,7 @@ export default {
 
 .chat-bot-window {
   position: fixed;
-  bottom: 80px;
+  bottom: 120px;
   right: 20px;
   z-index: 9999;
 }
