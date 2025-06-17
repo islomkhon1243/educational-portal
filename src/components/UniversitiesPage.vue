@@ -308,8 +308,8 @@ export default {
 
 .chat-toggle-btn {
   position: fixed;
-  bottom: 20px;
-  right: 20px;
+  bottom: 40px;
+  right: 40px;
   z-index: 10000;
   background-color: #1976D2;
   color: white;
