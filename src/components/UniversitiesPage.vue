@@ -313,6 +313,13 @@ export default {
   z-index: 10000;
   background-color: #1976D2;
   color: white;
+  font-size: 28px; /* увеличено с обычных 20px */
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .bot-response {
