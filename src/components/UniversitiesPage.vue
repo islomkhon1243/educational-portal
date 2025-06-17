@@ -29,6 +29,44 @@
       </div>
     </div>
   </div>
+  <!-- Плавающий чат-бот внизу справа -->
+  <div
+    v-if="drawer"
+    class="chat-bot-window"
+  >
+    <v-card width="350" elevation="10" class="pa-2">
+      <v-card-title class="text-h6">🤖 Помощник Futurum</v-card-title>
+      <v-card-text style="height: 300px; overflow-y: auto;">
+        <div v-for="(msg, i) in messages" :key="i" class="my-2">
+          <div v-if="msg.role === 'user'" class="text-right">
+            <strong>Вы:</strong> {{ msg.content }}
+          </div>
+          <div v-else class="text-left">
+            <strong>Бот:</strong> {{ msg.content }}
+          </div>
+        </div>
+      </v-card-text>
+      <v-divider />
+      <v-card-actions>
+        <v-text-field
+          v-model="userInput"
+          label="Ваш вопрос..."
+          hide-details
+          dense
+          class="flex-grow-1"
+          @keyup.enter="sendToBot"
+        />
+        <v-btn icon @click="sendToBot">
+          <v-icon>mdi-send</v-icon>
+        </v-btn>
+      </v-card-actions>
+    </v-card>
+  </div>
+  
+  <!-- Кнопка открытия чата -->
+  <v-btn icon fixed bottom right class="chat-toggle-btn" @click="drawer = !drawer">
+    <v-icon>{{ drawer ? 'mdi-close' : 'mdi-chat' }}</v-icon>
+  </v-btn>
 </template>
 
 <script>
@@ -48,6 +86,9 @@ export default {
       universities: [],
       searchQuery: '',
       favoriteIds: [], // Список избранных ID
+      drawer: false,
+      userInput: '',
+      messages: []
     };
   },
   computed: {
@@ -112,6 +153,30 @@ export default {
       }
 
       this.saveFavoritesToLocalStorage();
+    },
+
+    async sendToBot() {
+      const question = this.userInput.trim();
+      if (!question) return;
+    
+      this.messages.push({ role: 'user', content: question });
+      this.userInput = '';
+    
+      try {
+        const systemPrompt = `Ты — умный и дружелюбный AI-помощник портала профориентации Futurum. Помогаешь абитуриентам найти вузы, специальности, дедлайны и т.д.`;
+    
+        const res = await axios.post(`${host}/api/ai`, {
+          systemPrompt,
+          userPrompt: question
+        });
+    
+        this.messages.push({
+          role: 'bot',
+          content: res.data.response || 'Нет ответа.'
+        });
+      } catch (e) {
+        this.messages.push({ role: 'bot', content: 'Произошла ошибка при получении ответа 😞' });
+      }
     },
   },
 };
@@ -196,6 +261,22 @@ export default {
 
 .favorite-icon:hover {
   color: red;
+}
+
+.chat-bot-window {
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  z-index: 9999;
+}
+
+.chat-toggle-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 10000;
+  background-color: #1976D2;
+  color: white;
 }
 
 /* Адаптивность */
