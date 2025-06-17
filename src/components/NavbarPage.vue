@@ -67,43 +67,43 @@
         </v-list>
       </v-menu>
     </div>
-  </v-app-bar>
 
-  <!-- Чат-бот Gemini -->
-  <v-navigation-drawer
-    v-model="drawer"
-    location="right"
-    temporary
-    width="350"
-    class="pa-3"
-  >
-    <v-card>
-      <v-card-title class="text-h6">🤖 Помощник Futurum</v-card-title>
-      <v-card-text style="height: 400px; overflow-y: auto;">
-        <div v-for="(msg, i) in messages" :key="i" class="my-2">
-          <div v-if="msg.role === 'user'" class="text-right">
-            <strong>Вы:</strong> {{ msg.content }}
+    <!-- Чат-бот Gemini -->
+    <v-navigation-drawer
+      v-model="drawer"
+      location="right"
+      temporary
+      width="350"
+      class="pa-3"
+    >
+      <v-card>
+        <v-card-title class="text-h6">🤖 Помощник Futurum</v-card-title>
+        <v-card-text style="height: 400px; overflow-y: auto;">
+          <div v-for="(msg, i) in messages" :key="i" class="my-2">
+            <div v-if="msg.role === 'user'" class="text-right">
+              <strong>Вы:</strong> {{ msg.content }}
+            </div>
+            <div v-else class="text-left">
+              <strong>Бот:</strong> {{ msg.content }}
+            </div>
           </div>
-          <div v-else class="text-left">
-            <strong>Бот:</strong> {{ msg.content }}
-          </div>
-        </div>
-      </v-card-text>
-      <v-divider></v-divider>
-      <v-card-actions>
-        <v-text-field
-          v-model="userInput"
-          label="Ваш вопрос..."
-          hide-details
-          dense
-          @keyup.enter="sendToBot"
-        />
-        <v-btn icon @click="sendToBot">
-          <v-icon>mdi-send</v-icon>
-        </v-btn>
-      </v-card-actions>
-    </v-card>
-  </v-navigation-drawer>
+        </v-card-text>
+        <v-divider></v-divider>
+        <v-card-actions>
+          <v-text-field
+            v-model="userInput"
+            label="Ваш вопрос..."
+            hide-details
+            dense
+            @keyup.enter="sendToBot"
+          />
+          <v-btn icon @click="sendToBot">
+            <v-icon>mdi-send</v-icon>
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-navigation-drawer>
+  </v-app-bar>
 </template>
 
 <script>
