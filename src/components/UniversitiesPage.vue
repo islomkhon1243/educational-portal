@@ -114,6 +114,33 @@ export default {
   mounted() {
     this.loadFavoritesFromLocalStorage();
     this.fetchUniversities();
+    const saved = localStorage.getItem('futurum_chat');
+    if (saved) {
+      const parsed = JSON.parse(saved);
+      const oneHour = 60 * 60 * 1000;
+      const now = Date.now();
+      
+      // Проверка срока действия
+      if (now - parsed.timestamp < oneHour) {
+        this.messages = parsed.messages;
+      } else {
+        localStorage.removeItem('futurum_chat');
+      }
+    };
+  },
+  watch: {
+    messages: {
+      handler(newMessages) {
+        localStorage.setItem(
+          'futurum_chat',
+          JSON.stringify({
+            timestamp: Date.now(),
+            messages: newMessages
+          })
+        );
+      },
+      deep: true
+    }
   },
   methods: {
     // Загружаем список избранных ID из localStorage
