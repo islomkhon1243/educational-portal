@@ -11,6 +11,10 @@
 
     <v-spacer></v-spacer>
 
+    <v-btn icon @click="drawer = !drawer">
+      <v-icon>mdi-chat</v-icon>
+    </v-btn>
+
     <!-- Авторизация - десктоп -->
     <div class="d-none d-md-flex align-center">
       <v-btn text to="/dashboard" v-if="isAuthenticated" class="username-btn">
@@ -64,6 +68,42 @@
       </v-menu>
     </div>
   </v-app-bar>
+
+  <!-- Чат-бот Gemini -->
+  <v-navigation-drawer
+    v-model="drawer"
+    location="right"
+    temporary
+    width="350"
+    class="pa-3"
+  >
+    <v-card>
+      <v-card-title class="text-h6">🤖 Помощник Futurum</v-card-title>
+      <v-card-text style="height: 400px; overflow-y: auto;">
+        <div v-for="(msg, i) in messages" :key="i" class="my-2">
+          <div v-if="msg.role === 'user'" class="text-right">
+            <strong>Вы:</strong> {{ msg.content }}
+          </div>
+          <div v-else class="text-left">
+            <strong>Бот:</strong> {{ msg.content }}
+          </div>
+        </div>
+      </v-card-text>
+      <v-divider></v-divider>
+      <v-card-actions>
+        <v-text-field
+          v-model="userInput"
+          label="Ваш вопрос..."
+          hide-details
+          dense
+          @keyup.enter="sendToBot"
+        />
+        <v-btn icon @click="sendToBot">
+          <v-icon>mdi-send</v-icon>
+        </v-btn>
+      </v-card-actions>
+    </v-card>
+  </v-navigation-drawer>
 </template>
 
 <script>
@@ -88,6 +128,10 @@ export default {
       userId: '',
       isAuthenticated: false,
       drawer: false, // состояние для бургер-меню
+      userInput: '',
+      messages: [
+        { role: 'bot', content: 'Привет! Я бот Futurum. Задай мне вопрос по сайту или профориентации 🚀' }
+      ],
     };
   },
   mounted() {
@@ -135,6 +179,21 @@ export default {
         }
       } catch (error) {
         console.error('Ошибка получения username:', error);
+      }
+    },
+    async sendToBot() {
+      const question = this.userInput.trim();
+      if (!question) return;
+    
+      this.messages.push({ role: 'user', content: question });
+      this.userInput = '';
+    
+      try {
+        const res = await axios.post(`${host}/api/ask-bot`, { message: question });
+        this.messages.push({ role: 'bot', content: res.data.reply || 'Нет ответа.' });
+      } catch (e) {
+        console.error("Ошибка общения с ботом:", e);
+        this.messages.push({ role: 'bot', content: 'Произошла ошибка при получении ответа 😞' });
       }
     },
   },
