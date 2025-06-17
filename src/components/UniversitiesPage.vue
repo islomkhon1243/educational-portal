@@ -28,45 +28,45 @@
         <h3>{{ university.name }}</h3>
       </div>
     </div>
-  </div>
-  <!-- Плавающий чат-бот внизу справа -->
-  <div
-    v-if="drawer"
-    class="chat-bot-window"
-  >
-    <v-card width="350" elevation="10" class="pa-2">
-      <v-card-title class="text-h6">🤖 Помощник Futurum</v-card-title>
-      <v-card-text style="height: 300px; overflow-y: auto;">
-        <div v-for="(msg, i) in messages" :key="i" class="my-2">
-          <div v-if="msg.role === 'user'" class="text-right">
-            <strong>Вы:</strong> {{ msg.content }}
+    <!-- Плавающий чат-бот внизу справа -->
+    <div
+      v-if="drawer"
+      class="chat-bot-window"
+    >
+      <v-card width="350" elevation="10" class="pa-2">
+        <v-card-title class="text-h6">🤖 Помощник Futurum</v-card-title>
+        <v-card-text style="height: 300px; overflow-y: auto;">
+          <div v-for="(msg, i) in messages" :key="i" class="my-2">
+            <div v-if="msg.role === 'user'" class="text-right">
+              <strong>Вы:</strong> {{ msg.content }}
+            </div>
+            <div v-else class="text-left">
+              <strong>Бот:</strong> {{ msg.content }}
+            </div>
           </div>
-          <div v-else class="text-left">
-            <strong>Бот:</strong> {{ msg.content }}
-          </div>
-        </div>
-      </v-card-text>
-      <v-divider />
-      <v-card-actions>
-        <v-text-field
-          v-model="userInput"
-          label="Ваш вопрос..."
-          hide-details
-          dense
-          class="flex-grow-1"
-          @keyup.enter="sendToBot"
-        />
-        <v-btn icon @click="sendToBot">
-          <v-icon>mdi-send</v-icon>
-        </v-btn>
-      </v-card-actions>
-    </v-card>
+        </v-card-text>
+        <v-divider />
+        <v-card-actions>
+          <v-text-field
+            v-model="userInput"
+            label="Ваш вопрос..."
+            hide-details
+            dense
+            class="flex-grow-1"
+            @keyup.enter="sendToBot"
+          />
+          <v-btn icon @click="sendToBot">
+            <v-icon>mdi-send</v-icon>
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </div>
+    
+    <!-- Кнопка открытия чата -->
+    <v-btn icon fixed bottom right class="chat-toggle-btn" @click="drawer = !drawer">
+      <v-icon>{{ drawer ? 'mdi-close' : 'mdi-chat' }}</v-icon>
+    </v-btn>
   </div>
-  
-  <!-- Кнопка открытия чата -->
-  <v-btn icon fixed bottom right class="chat-toggle-btn" @click="drawer = !drawer">
-    <v-icon>{{ drawer ? 'mdi-close' : 'mdi-chat' }}</v-icon>
-  </v-btn>
 </template>
 
 <script>
