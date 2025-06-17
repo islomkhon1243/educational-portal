@@ -41,7 +41,8 @@
               <strong>Вы:</strong> {{ msg.content }}
             </div>
             <div v-else class="text-left">
-              <strong>Бот:</strong> {{ msg.content }}
+              <strong>Бот:</strong>
+              <div v-html="msg.content" class="bot-response"></div>
             </div>
           </div>
         </v-card-text>
@@ -159,24 +160,31 @@ export default {
       const question = this.userInput.trim();
       if (!question) return;
     
+      // Отображаем сообщение пользователя
       this.messages.push({ role: 'user', content: question });
       this.userInput = '';
     
       try {
-        const systemPrompt = `Ты — умный и дружелюбный AI-помощник, встроенный в портал профориентации абитуриентов Futurum. 
-Ты помогаешь школьникам выбирать университет, профессию, проходные баллы, дедлайны и отвечаешь на общие вопросы по поступлению в Казахстане. Отвечай кратко, понятно, дружелюбно.`;
+        const systemPrompt = `Ты — умный и дружелюбный AI-помощник, встроенный в портал профориентации абитуриентов Futurum.
+    Ты помогаешь школьникам выбирать университет, профессию, проходные баллы, дедлайны и отвечаешь на общие вопросы по поступлению в Казахстане.
+    Отвечай дружелюбно, кратко и структурированно. Используй HTML-формат: <h3>, <p>, <ul>, <li>, <a> и <strong>.`;
     
         const res = await axios.post(`${host}/api/ai`, {
           systemPrompt,
           userPrompt: question
         });
     
+        const answer = res.data.response || '<p>Нет ответа.</p>';
+    
         this.messages.push({
           role: 'bot',
-          content: res.data.response || 'Нет ответа.'
+          content: answer
         });
       } catch (e) {
-        this.messages.push({ role: 'bot', content: 'Произошла ошибка при получении ответа 😞' });
+        this.messages.push({
+          role: 'bot',
+          content: '<p>Произошла ошибка при получении ответа 😞</p>'
+        });
       }
     },
   },
@@ -278,6 +286,29 @@ export default {
   z-index: 10000;
   background-color: #1976D2;
   color: white;
+}
+
+.bot-response {
+  background: #f9f9f9;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.bot-response h3 {
+  margin-top: 0.5rem;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.bot-response ul {
+  margin-left: 1rem;
+  padding-left: 1rem;
+}
+
+.bot-response li {
+  margin-bottom: 6px;
 }
 
 /* Адаптивность */
