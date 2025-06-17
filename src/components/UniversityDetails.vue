@@ -169,7 +169,7 @@
             />
             <v-select
                 v-if="userDocuments.length > 0"
-                v-model="selectedDocument1"
+                v-model="selectedDocument2"
                 :items="userDocuments"
                 item-text="file_name"
                 item-value="file_path"
@@ -187,7 +187,7 @@
             />
             <v-select
                 v-if="userDocuments.length > 0"
-                v-model="selectedDocument1"
+                v-model="selectedDocument3"
                 :items="userDocuments"
                 item-text="file_name"
                 item-value="file_path"
@@ -205,7 +205,7 @@
             />
             <v-select
                 v-if="userDocuments.length > 0"
-                v-model="selectedDocument1"
+                v-model="selectedDocument4"
                 :items="userDocuments"
                 item-text="file_name"
                 item-value="file_path"
