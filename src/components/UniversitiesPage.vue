@@ -65,7 +65,7 @@
     
     <!-- Кнопка открытия чата -->
     <v-btn icon fixed bottom right class="chat-toggle-btn" @click="drawer = !drawer">
-      <v-icon>{{ drawer ? 'mdi-close' : 'mdi-chat' }}</v-icon>
+      <v-icon class="chat-icon">{{ drawer ? 'mdi-close' : 'mdi-chat' }}</v-icon>
     </v-btn>
   </div>
 </template>
@@ -320,6 +320,10 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.chat-icon {
+  font-size: 36px !important; /* Увеличь по желанию: 36px, 40px, 48px */
 }
 
 .bot-response {
