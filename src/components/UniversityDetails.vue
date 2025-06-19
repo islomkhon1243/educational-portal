@@ -344,20 +344,24 @@ export default {
     closeDialog() {
       this.dialog = false; // Закрыть диалоговое окно
     },
-    handleFileUpload(type) {
-      switch (type) {
-        case 'fileEducation':
-          // обработка fileEducation
-          break;
-        case 'fileID':
-          // обработка fileID
-          break;
-        case 'fileMedical':
-          // обработка fileMedical
-          break;
-        case 'fileENT':
-          // обработка fileENT
-          break;
+    handleFileUpload(type, event) {
+      if (event.target.files && event.target.files.length > 0) {
+        const uploadedFile = event.target.files[0];
+    
+        switch (type) {
+          case 'fileEducation':
+            this.fileEducation = uploadedFile;
+            break;
+          case 'fileID':
+            this.fileID = uploadedFile;
+            break;
+          case 'fileMedical':
+            this.fileMedical = uploadedFile;
+            break;
+          case 'fileENT':
+            this.fileENT = uploadedFile;
+            break;
+        }
       }
     },
     async submitApplication() {
