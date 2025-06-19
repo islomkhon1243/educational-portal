@@ -375,8 +375,17 @@ export default {
       formData.append('userId', userId);
 
       // Если файл выбран, добавляем его в форму
-      if (this.file) {
-        formData.append('file', this.file);
+      if (this.fileEducation) {
+        formData.append('fileEducation', this.fileEducation);
+      }
+      if (this.fileID) {
+        formData.append('fileID', this.fileID);
+      }
+      if (this.fileMedical) {
+        formData.append('fileMedical', this.fileMedical);
+      }
+      if (this.fileENT) {
+        formData.append('fileENT', this.fileENT);
       }
 
       // Если выбран документ из списка, передаем только путь к файлу
