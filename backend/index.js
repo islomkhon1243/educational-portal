@@ -75,6 +75,13 @@ const storage = diskStorage({
 });
 const upload = multer({ storage });
 
+const uploadFields = upload.fields([
+  { name: 'fileID', maxCount: 1 },
+  { name: 'fileEducation', maxCount: 1 },
+  { name: 'fileMedical', maxCount: 1 },
+  { name: 'fileENT', maxCount: 1 }
+]);
+
 // Настройки почтового сервиса (замени на свои)
 const transporter = nodemailer.createTransport({
     service: 'Gmail',
@@ -335,7 +342,12 @@ app.get('/api/universities/:id', async (req, res) => {
     res.json(result.rows[0]);
 });
 
-app.post('/api/applications/:universityId', upload.single('file'), async (req, res) => {
+app.post('/api/applications/:universityId', upload.fields([
+    { name: 'fileID', maxCount: 1 },
+    { name: 'fileEducation', maxCount: 1 },
+    { name: 'fileMedical', maxCount: 1 },
+    { name: 'fileENT', maxCount: 1 }
+  ]), async (req, res) => {
     const { lastname, firstname, middlename, email, personalStatement, selectedFilePath, userId } = req.body;
     const universityId = req.params.universityId;
 
@@ -511,7 +523,12 @@ app.post('/api/articles', async (req, res) => {
 
 
 // для сохранения документа в таблице документы пользователя
-app.post('/api/user-documents/:userId', upload.single('file'), async (req, res) => {
+app.post('/api/user-documents/:userId', upload.fields([
+    { name: 'fileID', maxCount: 1 },
+    { name: 'fileEducation', maxCount: 1 },
+    { name: 'fileMedical', maxCount: 1 },
+    { name: 'fileENT', maxCount: 1 }
+  ]), async (req, res) => {
     const { fileName } = req.body;
     const userId = req.params.userId;
     const filePath = req.file ? req.file.path : null; // Путь к загруженному файлу
